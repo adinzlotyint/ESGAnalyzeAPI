@@ -9,7 +9,13 @@ namespace ESGAnalyzeAPI.Services {
     public class ParseService : IParseService {
         public async Task<string> ExtractTextFromPDFAsync(IFormFile file) {
             using var stream = file.OpenReadStream();
-            using var pdf = PdfDocument.Open(stream);
+            var pdfBytes = await Task.Run(() => {
+                using var memoryStream = new MemoryStream();
+                stream.CopyTo(memoryStream);
+                return memoryStream.ToArray();
+            });
+
+            using var pdf = PdfDocument.Open(pdfBytes);
 
             var builder = new StringBuilder();
             foreach (Page page in pdf.GetPages()) {
@@ -19,5 +25,4 @@ namespace ESGAnalyzeAPI.Services {
             return builder.ToString();
         }
     }
-
 }

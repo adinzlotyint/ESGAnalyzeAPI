@@ -1,10 +1,10 @@
 ﻿using ESGAnalyzeAPI.Models;
 
 namespace ESGAnalyzeAPI.Services {
-    public interface IAnalyzer {
+    public interface IAnalyzerService {
         public ESGAnalysisResult Analyze(string text);
     }
-    public class AnalyzeService : IAnalyzer {
+    public class AnalyzeService : IAnalyzerService {
         private readonly IEnumerable<ICriterions> _analyzers;
 
         public AnalyzeService(IEnumerable<ICriterions> analyzers) {
