@@ -1,0 +1,6 @@
+@ESGAnalyzeAPI_HostAddress = http://localhost:5169
+
+GET {{ESGAnalyzeAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
