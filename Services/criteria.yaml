@@ -1,0 +1,126 @@
+﻿criteria:
+  # -----------------------------------------------------
+  # C4 – Emisje GHG (zakresy)
+  # -----------------------------------------------------
+  - id: C4
+    name: "Zakres 1, 2, 3 (2 metody) + Kategorie skrócone"
+    includePatterns:
+    - \b(zakres|scope)\s*(1|I)\b
+    - \b(zakres|scope)\s*(2|II)\b
+    - \b(zakres|scope)\s*(3|III)\b
+    - \blocation[- ]base(?:d)?\b
+    - \bmarket[- ]base(?:d)?\b
+    - \b(?:Kat|Kategoria|Cat|Category).{0,3}?(?:[1-9]|1[0-5])\b
+    excludePatterns:
+    - "\\bzakres\\s*3\\b.{0,50}?(pominięty|wyłączony|nie.{0,5}(ujęty|uwzględniony|raportowany|brany pod uwagę))"
+    - "\\bzakres\\s*3\\b.{0,50}?(opcjonalnie|wyłącznie.{0,10}na.{0,10}życzenie|udostępniany.{0,10}na.{0,10}żądanie)"
+    - "\\bzakres\\s*3\\b.{0,50}?(brak.{0,10}danych|szacunek|ograniczone.{0,10}informacje)"
+    - "\\b(ślad|emisje).{0,50}?\\bzakres\\s*3\\b.{0,50}?(nie.{0,5}(pełny|zupełny|kompletny|reprezentatywny))"
+    - "\\b(scope\\s*3|zakres\\s*3)\\b.{0,50}?(excluded|not.{0,10}included|available.{0,10}upon.{0,10}request|optional)"
+    scoreMapping: { default: 1.0 }
+
+  - id: C4
+    name: "Zakres 1, 2, 3 (2 metody) + Kategorie pełne nazwy"
+    includePatterns:
+    - \b(zakres|scope)\s*(1|I)\b
+    - \b(zakres|scope)\s*(2|II)\b
+    - \b(zakres|scope)\s*(3|III)\b
+    - \blocation[- ]base(?:d)?\b
+    - \bmarket[- ]base(?:d)?\b
+    - \b(scope.{0,10}3|zakres(?:ie)?.{0,10}3)\b.{0,300}?\b(zakup.{0,40}surowc|środki trwałe|środk[óo]w? trwałych|
+        transport.{0,40}dystrybucj|odpady|podróże służbowe|dojazdy pracownik|leasing|aktywa dzierżawione|przetwarzanie.{0,40}produkt|
+            użytkowanie.{0,40}produkt|post[ęe]powanie.{0,40}(po|ze).{0,20}produkt|franczyz[ay]|inwestycj[ae]|inwestycje kapitałowe|materiały.{0,10}biur)\b
+    excludePatterns:
+    - "\\bzakres\\s*3\\b.{0,50}?(pominięty|wyłączony|nie.{0,5}(ujęty|uwzględniony|raportowany|brany pod uwagę))"
+    - "\\bzakres\\s*3\\b.{0,50}?(opcjonalnie|wyłącznie.{0,10}na.{0,10}życzenie|udostępniany.{0,10}na.{0,10}żądanie)"
+    - "\\bzakres\\s*3\\b.{0,50}?(brak.{0,10}danych|szacunek|ograniczone.{0,10}informacje)"
+    - "\\b(ślad|emisje).{0,50}?\\bzakres\\s*3\\b.{0,50}?(nie.{0,5}(pełny|zupełny|kompletny|reprezentatywny))"
+    - "\\b(scope\\s*3|zakres\\s*3)\\b.{0,50}?(excluded|not.{0,10}included|available.{0,10}upon.{0,10}request|optional)"
+    scoreMapping: { default: 1.0 }
+
+  - id: C4
+    name: "Zakres 1, 2, 3 (1 metoda) + Kategorie skrócone"
+    includePatterns:
+    - \b(zakres|scope)\s*(1|I)\b
+    - \b(zakres|scope)\s*(2|II)\b
+    - \b(zakres|scope)\s*(3|III)\b
+    - \b(?:Kat|Kategoria|Cat|Category).{0,3}?(?:[1-9]|1[0-5])\b
+    - \b(location|market)[- ]base(?:d)?\b
+    excludePatterns:
+    - "\\bzakres\\s*3\\b.{0,50}?(pominięty|wyłączony|nie.{0,5}(ujęty|uwzględniony|raportowany|brany pod uwagę))"
+    - "\\bzakres\\s*3\\b.{0,50}?(opcjonalnie|wyłącznie.{0,10}na.{0,10}życzenie|udostępniany.{0,10}na.{0,10}żądanie)"
+    - "\\bzakres\\s*3\\b.{0,50}?(brak.{0,10}danych|szacunek|ograniczone.{0,10}informacje)"
+    - "\\b(ślad|emisje).{0,50}?\\bzakres\\s*3\\b.{0,50}?(nie.{0,5}(pełny|zupełny|kompletny|reprezentatywny))"
+    - "\\b(scope\\s*3|zakres\\s*3)\\b.{0,50}?(excluded|not.{0,10}included|available.{0,10}upon.{0,10}request|optional)"
+    scoreMapping: { default: 0.75 }
+
+  - id: C4
+    name: "Zakres 1, 2, 3 (1 metoda) + Kategorie pełne nazwy"
+    includePatterns:
+    - \b(zakres|scope)\s*(1|I)\b
+    - \b(zakres|scope)\s*(2|II)\b
+    - \b(zakres|scope)\s*(3|III)\b
+    - \b(location|market)[- ]base(?:d)?\b
+    - \b(scope.{0,10}3|zakres(?:ie)?.{0,10}3)\b.{0,300}?\b(zakup.{0,40}surowc|środki trwałe|środk[óo]w? trwałych|paliw.{0,40}zakres.{0,5}[12]|emisj.{0,40}zakres.{0,5}[12]|
+        transport.{0,40}dystrybucj|odpady|podróże służbowe|dojazdy pracownik|leasing|aktywa dzierżawione|przetwarzanie.{0,40}produkt|
+            użytkowanie.{0,40}produkt|post[ęe]powanie.{0,40}(po|ze).{0,20}produkt|franczyz[ay]|inwestycj[ae]|inwestycje kapitałowe|materiały.{0,10}biur)\b
+    excludePatterns:
+    - "\\bzakres\\s*3\\b.{0,50}?(pominięty|wyłączony|nie.{0,5}(ujęty|uwzględniony|raportowany|brany pod uwagę))"
+    - "\\bzakres\\s*3\\b.{0,50}?(opcjonalnie|wyłącznie.{0,10}na.{0,10}życzenie|udostępniany.{0,10}na.{0,10}żądanie)"
+    - "\\bzakres\\s*3\\b.{0,50}?(brak.{0,10}danych|szacunek|ograniczone.{0,10}informacje)"
+    - "\\b(ślad|emisje).{0,50}?\\bzakres\\s*3\\b.{0,50}?(nie.{0,5}(pełny|zupełny|kompletny|reprezentatywny))"
+    - "\\b(scope\\s*3|zakres\\s*3)\\b.{0,50}?(excluded|not.{0,10}included|available.{0,10}upon.{0,10}request|optional)"
+    scoreMapping: { default: 0.75 }
+
+  - id: C4
+    name: "Zakresy 1 i 2 (2 metody)"
+    includePatterns:
+    - \b(zakres|scope)\s*(1|I)\b
+    - \b(zakres|scope)\s*(2|II)\b
+    - \blocation[- ]base(?:d)?\b
+    - \bmarket[- ]base(?:d)?\b
+    scoreMapping: { default: 0.5 }
+
+  - id: C4
+    name: "Zakresy 1 i 2 (1 metoda)"
+    includePatterns:
+    - (zakres|scope)\s*(1|I)\b
+    - (zakres|scope)\s*(2|II)\b
+    scoreMapping: { default: 0.25 }
+
+  # -----------------------------------------------------
+  # C6 – Standard kalkulacji emisji
+  # -----------------------------------------------------
+  - id: C6
+    name: C6_STANDARD_MENTIONED
+    includePatterns:
+      - (ISO\s*14064-1|GHG\s+Protocol|PAS\s*2050|EN\s*16258|\bGRI\s+(302|305)\b|The\s+Greenhouse\s+Gas)
+    scoreMapping: { default: 1.0 }
+
+  # -----------------------------------------------------
+  # C7 – Źródła wskaźników emisji i GWP
+  # -----------------------------------------------------
+  - id: C7
+    name: C7_GWP_SOURCES
+    includePatterns:
+      - (\bIPCC\b|\bDEFRA\b|\becoinvent\b|\bGEMIS\b|\bBEIS\b|\bEPA\b|\bADEME\b|\bCircular\s+Ecology\b|\bClimatiq\b|\bCBAM\b|\bEXIOBASE\b|\bGLEC\b|\bGreenview\b|\bUBA\b|\bIEA\b|\bWRAP\b|\bKOBIZE\b)
+      - (wskaźnik(i|ów|a|ach)?\s+(emisyjności|emisji)|współczynnik\w*\s+(emisji|GWP)|emission\s+factor|\bGWP\b|Global\s+Warming\s+Potential)
+    scoreMapping: { default: 1.0 }
+
+  # -----------------------------------------------------
+  # C11 – Jednostka CO2e
+  # -----------------------------------------------------
+  - id: C11
+    name: C11_CORRECT_UNIT
+    includePatterns:
+      - "(CO2e|CO2-eq|CO2eq|CO₂e)"
+    scoreMapping: { default: 1.0 }
+
+  # -----------------------------------------------------
+  # C12 – Obecność słów kluczowych
+  # -----------------------------------------------------
+  - id: C12
+    name: C12_KEYWORDS_PRESENT
+    includePatterns:
+      - "(dwutlenek\\s+węgla|gaz\\s+cierplarnian|CO2|zmiany\\s+klimatu|greenhouse\\s+gas|climate\\s+change)"
+    scoreMapping: { default: 1.0 }

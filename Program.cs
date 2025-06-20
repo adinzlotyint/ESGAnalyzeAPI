@@ -14,18 +14,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped<IParseService, ParseService>();
 builder.Services.AddScoped<IAnalyzerService, AnalyzeService>();
-builder.Services.AddSingleton<ICriterions, C1PolicyStrategyAnalyzer>();
-builder.Services.AddSingleton<ICriterions, C2RisksAndChancesAnalyzer>();
-builder.Services.AddSingleton<ICriterions, C3ClimateRiskAnalyzer>();
-builder.Services.AddSingleton<ICriterions, C4EmissionsScopeAnalyzer>();
-builder.Services.AddSingleton<ICriterions, C5EmissionsBoundaryAnalyzer>();
-builder.Services.AddSingleton<ICriterions, C6CalculationStandardAnalyzer>();
-builder.Services.AddSingleton<ICriterions, C7GwpSourcesAnalyzer>();
-builder.Services.AddSingleton<ICriterions, C8EmissionsTrendAnalyzer>();
-builder.Services.AddSingleton<ICriterions, C9IntensityIndicatorAnalyzer>();
-builder.Services.AddSingleton<ICriterions, C10NumericConsistencyAnalyzer>();
-builder.Services.AddSingleton<ICriterions, C11UnitCorrectnessAnalyzer>();
-builder.Services.AddSingleton<ICriterions, C12KeywordPresenceAnalyzer>();
+builder.Services.AddSingleton<ICriterions, YamlRuleAnalyzer>();
 
 var app = builder.Build();
 
